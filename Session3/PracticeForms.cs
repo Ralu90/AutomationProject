@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationProject.Session3
 {
@@ -49,28 +50,52 @@ namespace AutomationProject.Session3
                 genderOther.Click();
             }
 
-           /* switch (gender)
-            {
-                case "Male":
-                    genderMale.Click();
-                    break;
+            /* switch (gender)
+             {
+                 case "Male":
+                     genderMale.Click();
+                     break;
 
-                case "Female":
-                    genderFemale.Click();
-                    break;
+                 case "Female":
+                     genderFemale.Click();
+                     break;
 
-                case "Other":
-                    genderOther.Click();
-            }*/
+                 case "Other":
+                     genderOther.Click();
+             }*/
+
+           
+            IWebElement dateofBirth = Driver.FindElement(By.Id("dateOfBirthInput"));
+            dateofBirth.Click();
+
+            IWebElement monthOfBirth = Driver.FindElement(By.XPath("//select[@class='react-datepicker__month-select']"));
+            SelectElement monthDropdown = new SelectElement(monthOfBirth);
+            monthDropdown.SelectByValue("0");
+
+            IWebElement yearofBirth = Driver.FindElement(By.XPath("//select[@class='react-datepicker__year-select']"));
+            SelectElement yearDropdown = new SelectElement(yearofBirth);
+            yearDropdown.SelectByValue("1990");
+
+            IWebElement dayofBirth = Driver.FindElement(By.XPath("//*[@class='react-datepicker__day react-datepicker__day--031' and not (contains (@class, '--outside-month'))]"));
+            dayofBirth.Click();
+
+
+            IWebElement subjectAutocomplete = Driver.FindElement(By.Id("subjectsInput"));
+            subjectAutocomplete.SendKeys("Chemistry");
+            subjectAutocomplete.SendKeys(Keys.Enter);
+            subjectAutocomplete.SendKeys("E");
+            subjectAutocomplete.SendKeys(Keys.ArrowDown);
+            subjectAutocomplete.SendKeys(Keys.ArrowDown);
+            subjectAutocomplete.SendKeys(Keys.Enter);
         }
-        /*[TearDown]
+        [TearDown]
       public void TearDown()
       {
           if (Driver != null)
           {
-              Driver.Dispose();
-              Driver.Quit();
+              //Driver.Dispose();
+             // Driver.Quit();
           }
-      }*/
+      }
     }
 }
