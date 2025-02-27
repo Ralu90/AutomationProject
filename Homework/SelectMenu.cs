@@ -44,8 +44,15 @@ namespace AutomationProject.Homework
             multiSelectdropdown.SelectByText("Saab");
             multiSelectdropdown.SelectByText("Opel");
 
+            IWebElement subjectAutocomplete = Driver.FindElement(By.Id("subjectsInput"));
+            subjectAutocomplete.SendKeys("Chemistry");
+            subjectAutocomplete.SendKeys(Keys.Enter);
+            subjectAutocomplete.SendKeys("E");
+            subjectAutocomplete.SendKeys(Keys.ArrowDown);
+            subjectAutocomplete.SendKeys(Keys.ArrowDown);
+            subjectAutocomplete.SendKeys(Keys.Enter);
 
-            
+
         }
 
 
